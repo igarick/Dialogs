@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Scanner;
 
 public class StringSelectDialog extends AbstractDialog<String> {
 
@@ -11,24 +10,19 @@ public class StringSelectDialog extends AbstractDialog<String> {
     }
 
     @Override
-    public String input() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println(title);
-            String input = scanner.nextLine();
-
-            if (contains(input)) {
-                return input;
-            }
-
-            System.out.println(error);
-        }
+    protected boolean isTypeValid(String input) {
+        return true;
     }
 
-    private boolean contains(String key) {
+    @Override
+    protected String parseInput(String input) {
+        return input;
+    }
+
+    @Override
+    protected boolean isAllowed(String result) {
         for (String s : keys) {
-            if (s.equalsIgnoreCase(key)) {
+            if (s.equalsIgnoreCase(result)) {
                 return true;
             }
         }

@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class IntegerMinMaxDialog extends AbstractDialog<Integer> {
 
     private final int min;
@@ -12,31 +10,22 @@ public class IntegerMinMaxDialog extends AbstractDialog<Integer> {
     }
 
     @Override
-    public Integer input() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println(title);
-            String input = scanner.nextLine();
-
-            if (isInteger(input)) {
-                int result = Integer.parseInt(input);
-                if (result >= min && result <= max) {
-                    return result;
-                }
-            }
-            System.out.println(error);
-        }
-
-    }
-
-
-    private boolean isInteger(String input) {
+    protected boolean isTypeValid(String input) {
         try {
-            int result = Integer.parseInt(input);
+            Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    @Override
+    protected Integer parseInput(String input) {
+        return Integer.parseInt(input);
+    }
+
+    @Override
+    protected boolean isAllowed(Integer result) {
+        return result >= min && result <= max;
     }
 }

@@ -10,4 +10,36 @@ public abstract class AbstractDialog<T> implements Dialog<T> {
         this.title = title;
         this.error = error;
     }
+
+    protected void showTitle() {
+        System.out.println(title);
+    }
+
+    protected void showError() {
+        System.out.println(error);
+    }
+
+    @Override
+    public T input() {
+        while (true) {
+            showTitle();
+            String input = scanner.nextLine();
+
+            if (isTypeValid(input)) {
+                T result = parseInput(input);
+                if (isAllowed(result)) {
+                    return result;
+                }
+            }
+            showError();
+        }
+    }
+
+    abstract protected boolean isTypeValid(String input);
+
+    abstract protected T parseInput(String input);
+
+    abstract protected boolean isAllowed(T result);
+
+
 }
