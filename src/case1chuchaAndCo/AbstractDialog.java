@@ -1,3 +1,5 @@
+package case1chuchaAndCo;
+
 import java.util.Scanner;
 
 public abstract class AbstractDialog<T> implements Dialog<T> {

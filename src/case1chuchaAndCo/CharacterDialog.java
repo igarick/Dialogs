@@ -1,3 +1,5 @@
+package case1chuchaAndCo;
+
 public class CharacterDialog extends AbstractDialog<Character>{
 
     public CharacterDialog(String title, String error) {

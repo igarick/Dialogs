@@ -1,3 +1,5 @@
+package case1chuchaAndCo;
+
 import java.util.List;
 
 public class StringSelectDialog extends AbstractDialog<String> {

@@ -1,3 +1,5 @@
+package case1chuchaAndCo;
+
 public class EnglishLetterDialog extends CharacterDialog{
 
     public EnglishLetterDialog(String title, String error) {
