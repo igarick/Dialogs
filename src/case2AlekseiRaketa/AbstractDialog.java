@@ -1,20 +1,22 @@
 package case2AlekseiRaketa;
 
-import java.util.FormatFlagsConversionMismatchException;
 import java.util.Scanner;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public abstract class AbstractDialog<T> implements Dialog<T> {
 
     protected final String title;
     protected final String error;
     protected final Function<String, T> mapper;
+    protected final Predicate<T> validator;
     protected final Scanner scanner = new Scanner(System.in);
 
-    public AbstractDialog(String title, String error, Function<String, T> mapper) {
+    public AbstractDialog(String title, String error, Function<String, T> mapper, Predicate<T> validator) {
         this.title = title;
         this.error = error;
         this.mapper = mapper;
+        this.validator = validator;
     }
 
     protected void showTitle() {
@@ -33,30 +35,12 @@ public abstract class AbstractDialog<T> implements Dialog<T> {
             String input = scanner.nextLine();
             try {
                 T result = mapper.apply(input);
-                if (isAllowed(result)) {
+                if (validator.test(result)) {
                     return result;
                 }
             } catch (IllegalArgumentException e) {
-
             }
             showError();
         }
     }
-//    @Override
-//    public T input() {
-//        while (true) {
-//            showTitle();
-//            String input = scanner.nextLine();
-//
-//            if (isTypeValid(input)) {
-//                T result = parseInput(input);
-//                if (isAllowed(result)) {
-//                    return result;
-//                }
-//            }
-//            showError();
-//        }
-//    }
-    abstract protected boolean isAllowed(T result);
-
 }

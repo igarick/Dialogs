@@ -1,5 +1,7 @@
 package case2AlekseiRaketa;
 
+import java.util.List;
+
 public class CharacterDialog extends AbstractDialog<Character> {
 
     public CharacterDialog(String title, String error) {
@@ -10,20 +12,8 @@ public class CharacterDialog extends AbstractDialog<Character> {
                         throw new IllegalArgumentException();
                     }
                     return s.charAt(0);
-                }
+                },
+                c -> true
         );
-    }
-
-//    @Override
-//    protected Character parseInput(String input) {
-//        if (input.length() != 1) {
-//            throw new IllegalArgumentException();
-//        }
-//        return input.charAt(0);
-//    }
-
-    @Override
-    protected boolean isAllowed(Character result) {
-        return true;
     }
 }

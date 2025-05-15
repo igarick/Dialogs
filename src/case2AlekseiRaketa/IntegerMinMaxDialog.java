@@ -1,20 +1,34 @@
 package case2AlekseiRaketa;
 
-public class IntegerMinMaxDialog extends AbstractDialog<Integer> {
+import java.util.function.Predicate;
 
-    private final int min;
-    private final int max;
+public class IntegerMinMaxDialog extends AbstractDialog<Integer> {
 
     public IntegerMinMaxDialog(String title, String error, int min, int max) {
         super(title,
                 error,
-                s -> Integer.parseInt(s));
-        this.min = min;
-        this.max = max;
+                Integer::parseInt,
+                n -> n >= min && n <= max);
+        // new MinMaxRealisater(min, max)); - создается объект вместо лямбды
+
     }
 
-    @Override
-    protected boolean isAllowed(Integer result) {
-        return result >= min && result <= max;
-    }
+//             Аналог того, что происходит в "n -> n >= min && n <= max"
+//    - создается класс в котором реализуется метод
+//
+//    private static class MinMaxRealisater implements Predicate<Integer> {
+//
+//      private final int min;
+//      private final int max;
+//
+//        public MinMaxRealisater(int min, int max) {
+//            this.min = min;
+//            this.max = max;
+//        }
+//
+//        @Override
+//        public boolean test(Integer n) {
+//            return n >= min && n <= max;
+//        }
+//    }
 }

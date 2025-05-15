@@ -13,5 +13,11 @@ public class Main {
                 "Неверный ввод");
         char input3 = characterDialog.input();
         System.out.println(input3);
+
+        List<String> keys = List.of("да", "нет");
+        Dialog<String> stringDialog = new StringSelectDialog("Введите да/нет",
+                "Неверный ввод", keys);
+        String input2 = stringDialog.input();
+        System.out.println(input2);
     }
 }
